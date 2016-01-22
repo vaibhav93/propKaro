@@ -241,7 +241,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'New User'
         },
-        resolve: loadSequence('newUserCtrl')
+        resolve: loadSequence('toaster','spin','angularSpinner','newUserCtrl')
     }).state('app.form.playground', {
         url: '/playground',
         templateUrl: "assets/views/form_playground.html",
@@ -306,13 +306,6 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     }).state('app.form.upload', {
         url: '/file-upload',
         templateUrl: "assets/views/form_file_upload.html",
-        title: 'Multiple File Upload',
-        ncyBreadcrumb: {
-            label: 'File Upload'
-        },
-        resolve: loadSequence('angularFileUpload', 'uploadCtrl')
-    }).state('app.pages', {
-        url: '/pages',
         template: '<div ui-view class="fade-in-up"></div>',
         title: 'Pages',
         ncyBreadcrumb: {
