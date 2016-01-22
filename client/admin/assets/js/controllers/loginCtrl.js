@@ -2,8 +2,8 @@
 /** 
   * Controller for login
 */
-app.controller('LoginCtrl', ["Vendor","$scope","$state","$rootScope","$localStorage","toaster", 
-	function (Vendor,$scope,$state,$rootScope,$localStorage,toaster) {
+app.controller('LoginCtrl', ["User","$scope","$state","$rootScope","$localStorage","toaster", 
+	function (User,$scope,$state,$rootScope,$localStorage,toaster) {
 	    $scope.toaster = {
         type: 'error',
         title: 'Invalid login',
@@ -11,7 +11,7 @@ app.controller('LoginCtrl', ["Vendor","$scope","$state","$rootScope","$localStor
     };
 
 	$scope.credentials = {
-    email: '',
+    username: '',
     password: ''
   	};
   	$rootScope.$on('$stateChangePermissionDenied',function(){
@@ -19,7 +19,7 @@ app.controller('LoginCtrl', ["Vendor","$scope","$state","$rootScope","$localStor
   	});
 
 	$scope.login = function (){
-		$scope.loginResult = Vendor.login($scope.credentials,
+		$scope.loginResult = User.login($scope.credentials,
 			function(res) {
 			$localStorage.accessToken = res.id;
 			$rootScope.user = res.user; 

@@ -19,7 +19,7 @@ function ($rootScope, $state, $stateParams,Permission,Authorize,$q,$templateCach
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'CRM', // name of your project
+        name: 'UniQuick IT solutions', // name of your project
         author: 'WebNet', // author's name or company name
         description: '', // brief description
         version: '1.0', // current version

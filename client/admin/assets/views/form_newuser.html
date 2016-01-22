@@ -1,0 +1,65 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1 class="mainTitle">Create Users</h1>
+			
+		</div>
+		<div ncy-breadcrumb></div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+
+<!-- start: TABLE WITH FILTERS -->
+<div ng-controller="newUserCtrl" class="container-fluid container-fullw">
+	<form name="Form" id="form1" novalidate ng-submit="form.submit(Form)">
+		<div class="row">
+			<div class="col-md-6">
+
+				<div class="form-group" ng-class="{'has-error':Form.name.$dirty && Form.name.$invalid, 'has-success':Form.name.$valid}">
+					<label class="control-label">
+						Name <span class="symbol required"></span>
+					</label>
+					<input type="text" placeholder="Enter your Name" class="form-control" name="name" ng-model="newUser.Name" required />
+					<span class="error text-small block" ng-if="Form.name.$dirty && Form.name.$invalid">Name is required</span>
+					<span class="success text-small" ng-if="Form.name.$valid">Valid !</span>
+				</div>
+				<div class="form-group" ng-class="{'has-error':Form.username.$dirty && Form.username.$invalid, 'has-success':Form.username.$valid}">
+					<label class="control-label">
+						Username <span class="symbol required"></span>
+					</label>
+					<input type="text" placeholder="Username" class="form-control" name="username" ng-model="newUser.username" required>
+					<span class="error text-small block" ng-if="Form.username.$dirty && Form.username.$error.required">Username is required.</span>
+					<span class="success text-small" ng-if="Form.username.$valid">Valid !</span>
+				</div>
+				
+				<div class="form-group" ng-class="{'has-error':Form.password.$dirty && Form.password.$invalid, 'has-success':Form.password.$valid}">
+					<label class="control-label">
+						Password <span class="symbol required"></span>
+					</label>
+					<input type="password" placeholder="Enter a Password" class="form-control" name="password" ng-model="newUser.password" required/>
+					<span class="error text-small block" ng-if="Form.password.$dirty && Form.password.$error.required">Password is required.</span>
+					<span class="success text-small block" ng-if="Form.password.$valid">Valid !</span>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="pull-right">
+					<button type="submit" class="btn btn-primary">
+						Submit
+					</button>
+					<button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
+						Reset
+					</button>
+					<button class="btn btn-default">
+						checkValid = {{ Form.$valid }}
+					</button>
+				</div>
+			</div>
+		</div>
+		<pre class="margin-top-20">{{ myModel | json }}</pre>
+	</form>
+</div>
+<!-- end: TABLE WITH FILTERS -->

@@ -39,13 +39,13 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         title: 'Dashboard',
         ncyBreadcrumb: {
             label: 'Dashboard'
+        },
+        data:{
+            permissions:{
+                only:['admin'],
+                redirectTo: 'login.signin'
+            }
         }
-        // data:{
-        //     permissions:{
-        //         only:['user'],
-        //         redirectTo: 'login.signin'
-        //     }
-        // }
     }).state('app.ui', {
         url: '/ui',
         template: '<div ui-view class="fade-in-up"></div>',
@@ -234,14 +234,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Elements'
         },
         resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl')
-    }).state('app.form.vendor', {
-        url: '/vendor/:vendorId',
-        templateUrl: "assets/views/form_vendor.html",
-        title: 'Forms Vendor',
+    }).state('app.form.newuser', {
+        url: '/user/new',
+        templateUrl: "assets/views/form_newuser.html",
+        title: 'Forms User',
         ncyBreadcrumb: {
-            label: 'vendor'
+            label: 'New User'
         },
-        resolve: loadSequence('vendorCtrl','gMapsCtrl')
+        resolve: loadSequence('newUserCtrl')
     }).state('app.form.playground', {
         url: '/playground',
         templateUrl: "assets/views/form_playground.html",

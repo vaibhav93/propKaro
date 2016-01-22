@@ -52,7 +52,7 @@ app.constant('JS_REQUIRES', {
         'xeditableCtrl': 'assets/js/controllers/xeditableCtrl.js',
         'chatCtrl': 'assets/js/controllers/chatCtrl.js',
         'loginCtrl': 'assets/js/controllers/loginCtrl.js',
-        'cityCtrl': 'assets/js/controllers/cityCtrl.js',
+        'newUserCtrl': 'assets/js/controllers/newUserCtrl.js',
         'vendorCtrl': 'assets/js/controllers/vendorCtrl.js',
         'vendorTableCtrl': 'assets/js/controllers/vendorTableCtrl.js',
         'gMapsCtrl' : 'assets/js/controllers/gMapsCtrl.js',
