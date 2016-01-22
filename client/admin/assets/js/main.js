@@ -19,8 +19,8 @@ function ($rootScope, $state, $stateParams,Permission,Authorize,$q,$templateCach
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'FreaCo', // name of your project
-        author: 'Ice Capes', // author's name or company name
+        name: 'CRM', // name of your project
+        author: 'WebNet', // author's name or company name
         description: '', // brief description
         version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)

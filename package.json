@@ -11,6 +11,7 @@
     "errorhandler": "^1.1.1",
     "loopback": "^2.14.0",
     "loopback-boot": "^2.6.5",
+    "loopback-connector-mongodb": "^1.13.3",
     "loopback-datasource-juggler": "^2.19.0",
     "multer": "^1.1.0",
     "s3": "^4.4.0",
