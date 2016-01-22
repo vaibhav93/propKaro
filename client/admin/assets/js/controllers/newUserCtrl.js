@@ -8,8 +8,12 @@
     function ($scope,$filter,$timeout) {
 
         $scope.newUser = {
-            name:''
+            name:'',
+            contact:null,
+            username:'',
+            password:''
         };
+        
         $scope.master = $scope.newUser;
         $scope.form = {
 
