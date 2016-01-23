@@ -10,7 +10,7 @@ app.controller('ChatCtrl', ["$scope", function ($scope) {
 
         $scope.otherIdUser = value;
     };
-    var exampleDate = new Date().setTime(new Date().getTime() - 240000 * 60);
+    // var exampleDate = new Date().setTime(new Date().getTime() - 240000 * 60);
 
     $scope.chat = [{
         "user": "Peter Clark",

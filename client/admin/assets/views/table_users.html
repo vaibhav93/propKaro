@@ -16,7 +16,7 @@
 		<div class="col-md-12">
 			<table ng-table="tableParams" show-filter="true" class="table">
 				<tbody ng-repeat="user in $data">
-					<tr ng-class-odd="'odd'" ng-class-even="'even'">
+					<tr ng-class-odd="'odd'" ng-class-even="'even'" ng-if="user.username!='admin'">
 						<td width="30%" data-title="'Name'" filter="{ 'name': 'text'}">{{user.name}}</td>
 						<td width="30%" data-title="'Username'" filter="{ 'username': 'text'}">{{user.username}}</td>
 						<td width="20%" data-title="'Sales completed'">{{uesr.sales}}</td>
