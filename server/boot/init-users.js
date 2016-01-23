@@ -8,7 +8,7 @@ module.exports = function(app) {
 
     console.log('Creating roles and users');
 
-    var User = app.models.User;
+    var User = app.models.UQUser;
     var Role = app.models.Role;
     // var manager = app.models.Manager;
     var userType = {

@@ -100,7 +100,7 @@ app.use('/api/getRole',function(req,res,next){
     //res.send(tokenId);
   }
   if (tokenId){
-    var UserModel = app.models.User;
+    var UserModel = app.models.UQUser;
 
     // Logic borrowed from user.js -> User.logout()
     UserModel.relations.accessTokens.modelTo.findById(tokenId, function(err, accessToken) {

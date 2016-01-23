@@ -4,14 +4,15 @@
 
  * Simple table with sorting and filtering on AngularJS
  */
- app.controller('newUserCtrl', ["$scope", "$filter","$timeout", "User", "usSpinnerService","toaster",
-    function ($scope,$filter,$timeout,User,usSpinnerService,toaster) {
+ app.controller('newUserCtrl', ["$scope", "$filter","$timeout", "UQUser", "usSpinnerService","toaster",
+    function ($scope,$filter,$timeout,UQUser,usSpinnerService,toaster) {
 
         $scope.newUser = {
             name:'',
             contact:null,
             username:'',
-            password:''
+            password:'',
+            role:''
         };
         
         $scope.generatePassword=function(length) {
@@ -62,14 +63,15 @@
 
                 } else {
                     $scope.newUser.email = $scope.newUser.username + '@uniquick.com';
-                    User.create($scope.newUser,function(success){
+                    $scope.newUser.role = 'users';
+                    UQUser.create($scope.newUser,function(success){
                         usSpinnerService.stop('spinner-1');
                         $scope.form.reset(form);
                         // console.log(success);
                         toaster.pop($scope.toasterSuccess.type, $scope.toasterSuccess.title, $scope.toasterSuccess.text);
                     },function(err){
                         usSpinnerService.stop('spinner-1');
-                        console.log('errrrrroorrr');
+                        // console.log('errrrrroorrr');
                         $scope.form.reset(form);
                         console.log(err);
                         toaster.pop($scope.toasterError.type, $scope.toasterError.title, $scope.toasterError.text);
@@ -84,7 +86,8 @@
                 name:null,
                 contact:null,
                 username:null,
-                password:null
+                password:null,
+                role:null
             };
             form.$setPristine(true);
 
