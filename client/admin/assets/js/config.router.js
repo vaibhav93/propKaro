@@ -174,14 +174,14 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Basic'
         }
-    }).state('app.table.vendor', {
-        url: '/vendor',
-        templateUrl: "assets/views/table_vendor.html",
-        title: 'Vendor Table',
+    }).state('app.table.users', {
+        url: '/users',
+        templateUrl: "assets/views/table_users.html",
+        title: 'Users Table',
         ncyBreadcrumb: {
-            label: 'Vendor'
+            label: 'Users'
         },
-        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'ngTable', 'vendorTableCtrl'),
+        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'ngTable', 'userTableCtrl'),
         data:{
             permissions:{
                 only:['admin']
