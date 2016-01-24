@@ -42,7 +42,7 @@
 
 				<div class="form-group" ng-class="{'has-error':Form.primaryno.$dirty && Form.primaryno.$invalid, 'has-success':Form.primaryno.$valid}">
 					<label class="control-label col-md-4">
-						Mobile number <span class="symbol required"></span>
+						Contact number <span class="symbol required"></span>
 					</label>
 					<div class="col-md-8">
 					<input type="text" placeholder="Contact" class="form-control" name="primaryno" ng-model="sale.primaryno" required />
@@ -59,6 +59,46 @@
 					</div>
 					<!-- <span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.secondaryno.$dirty && Form.secondaryno.$invalid">Last name is required</span> -->
 					<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.secondaryno.$valid && Form.secondaryno.$dirty">Valid !</span>
+				</div>
+				<div class="form-group" ng-class="{'has-error':Form.address.$dirty && Form.address.$invalid, 'has-success':Form.address.$valid && Form.address.$dirty}">
+					<label class="control-label col-md-4">
+						Address<span class="symbol"></span>
+					</label>
+					<div class="col-md-8">
+					<textarea placeholder="Address" class="form-control" name="address" ng-model="sale.address"/></textarea>
+					</div>
+					<!-- <span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.address.$dirty && Form.address.$invalid">Last name is required</span> -->
+					<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.address.$valid && Form.address.$dirty">Valid !</span>
+				</div>
+				<div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid && Form.state.$dirty}">
+					<label class="control-label col-md-4">
+						State<span class="symbol"></span>
+					</label>
+					<div class="col-md-8">
+					<input type="text" placeholder="State" class="form-control" name="state" ng-model="sale.state"/>
+					</div>
+					<!-- <span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.state.$dirty && Form.state.$invalid">Last name is required</span> -->
+					<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.state.$valid && Form.state.$dirty">Valid !</span>
+				</div>
+				<div class="form-group" ng-class="{'has-error':Form.zipcode.$dirty && Form.zipcode.$invalid, 'has-success':Form.zipcode.$valid && Form.zipcode.$dirty}">
+					<label class="control-label col-md-4">
+						Zipcode<span class="symbol"></span>
+					</label>
+					<div class="col-md-8">
+					<input type="number" placeholder="Zipcode" class="form-control" name="zipcode" ng-model="sale.zipcode"/>
+					</div>
+					<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.zipcode.$dirty && Form.zipcode.$invalid">Not a valid zipcode</span>
+					<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.zipcode.$valid && Form.address.$dirty">Valid !</span>
+				</div>
+				<div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid, 'has-success':Form.email.$valid && Form.email.$dirty}">
+					<label class="control-label col-md-4">
+						Email<span class="symbol required"></span>
+					</label>
+					<div class="col-md-8">
+					<input type="email" placeholder="Email" class="form-control" name="email" ng-model="sale.email" required/>
+					</div>
+					<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.email.$dirty && Form.email.$invalid">Not a valid email</span>
+					<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.email.$valid && Form.address.$dirty">Valid !</span>
 				</div>
 				
 				</fieldset>
