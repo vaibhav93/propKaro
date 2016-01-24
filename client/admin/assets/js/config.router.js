@@ -241,75 +241,26 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'New User'
         },
-        resolve: loadSequence('toaster','spin','angularSpinner','newUserCtrl')
-    }).state('app.form.playground', {
-        url: '/playground',
-        templateUrl: "assets/views/form_playground.html",
-        title: 'Forms playground',
-        ncyBreadcrumb: {
-            label: 'playground'
-        },
-        resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'selectCtrl')
-    }).state('app.form.city', {
-        url: '/city',
-        templateUrl: "assets/views/form_city.html",
-        title: 'Manage Cities',
-        ncyBreadcrumb: {
-            label: 'City'
-        },
-        resolve: loadSequence('ui.select', 'monospaced.elastic', 'ui.mask', 'ngTable', 'cityCtrl'),
+        resolve: loadSequence('toaster','spin','angularSpinner','newUserCtrl'),
         data:{
             permissions:{
-                only:['admin']
+                only:['a'],
+                redirectTo: 'login.signin'
             }
         }
-    }).state('app.form.xeditable', {
-        url: '/xeditable',
-        templateUrl: "assets/views/form_xeditable.html",
-        title: 'Angular X-Editable',
+    }).state('app.form.sale', {
+        url: '/sale/new',
+        templateUrl: "assets/views/form_sale.html",
+        title: 'New Sale',
         ncyBreadcrumb: {
-            label: 'X-Editable'
+            label: 'New Sale'
         },
-        resolve: loadSequence('xeditable', 'checklist-model', 'xeditableCtrl')
-    }).state('app.form.texteditor', {
-        url: '/editor',
-        templateUrl: "assets/views/form_text_editor.html",
-        title: 'Text Editor',
-        ncyBreadcrumb: {
-            label: 'Text Editor'
-        },
-        resolve: loadSequence('ckeditor-plugin', 'ckeditor', 'ckeditorCtrl')
-    }).state('app.form.wizard', {
-        url: '/wizard',
-        templateUrl: "assets/views/form_wizard.html",
-        title: 'Form Wizard',
-        ncyBreadcrumb: {
-            label: 'Wizard'
-        },
-        resolve: loadSequence('wizardCtrl')
-    }).state('app.form.validation', {
-        url: '/validation',
-        templateUrl: "assets/views/form_validation.html",
-        title: 'Form Validation',
-        ncyBreadcrumb: {
-            label: 'Validation'
-        },
-        resolve: loadSequence('validationCtrl')
-    }).state('app.form.cropping', {
-        url: '/image-cropping',
-        templateUrl: "assets/views/form_image_cropping.html",
-        title: 'Image Cropping',
-        ncyBreadcrumb: {
-            label: 'Image Cropping'
-        },
-        resolve: loadSequence('ngImgCrop', 'cropCtrl')
-    }).state('app.form.upload', {
-        url: '/file-upload',
-        templateUrl: "assets/views/form_file_upload.html",
-        template: '<div ui-view class="fade-in-up"></div>',
-        title: 'Pages',
-        ncyBreadcrumb: {
-            label: 'Pages'
+        resolve: loadSequence('toaster','spin','angularSpinner','saleCtrl'),
+        data:{
+            permissions:{
+                only:['users'],
+                redirectTo: 'login.signin'
+            }
         }
     }).state('app.pages.user', {
         url: '/user',

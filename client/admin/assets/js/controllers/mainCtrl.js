@@ -15,6 +15,7 @@ function ($rootScope, $scope, $state, $translate, $localStorage, $window, $docum
             { //success
                 delete $localStorage.user;
                 delete $localStorage.accessToken;
+                delete $localStorage.role;
                 console.log('logout success');
                 $state.go('login.signin');},
             function(res){
@@ -27,6 +28,7 @@ function ($rootScope, $scope, $state, $translate, $localStorage, $window, $docum
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         //start loading bar on stateChangeStart
+        $rootScope.role = $localStorage.role;
         cfpLoadingBar.start();
         console.log(fromState);
     });

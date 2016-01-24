@@ -9,9 +9,14 @@ function ($rootScope, $state, $stateParams,Permission,Authorize,$q,$templateCach
     FastClick.attach(document.body);
     Permission.defineRole('admin',function(stateParams){
         var deferred = $q.defer();
-        Authorize.getRole(deferred);
+        Authorize.getRole(deferred,'admin');
         return deferred.promise; 
-    })
+    }).defineRole('users',function(stateParams){
+        var deferred = $q.defer();
+        Authorize.getRole(deferred,'users');
+        $rootScope.role= 'users';
+        return deferred.promise;
+    });
     // Set some reference to access them from any scope
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;

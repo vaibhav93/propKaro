@@ -2,8 +2,8 @@
 /** 
   * Controller for login
 */
-app.controller('LoginCtrl', ["UQUser","$scope","$state","$rootScope","$localStorage","toaster", 
-	function (UQUser,$scope,$state,$rootScope,$localStorage,toaster) {
+app.controller('LoginCtrl', ["UQUser","$scope","$state","$rootScope","$localStorage","toaster","ngAuthorize", 
+	function (UQUser,$scope,$state,$rootScope,$localStorage,toaster,ngAuthorize) {
 	    $scope.toaster = {
         type: 'error',
         title: 'Invalid login',
@@ -24,7 +24,14 @@ app.controller('LoginCtrl', ["UQUser","$scope","$state","$rootScope","$localStor
 			$localStorage.accessToken = res.id;
 			$rootScope.user = res.user; 
 			$localStorage.user = res.user;
-        	$state.go('app.dashboard');
+      ngAuthorize.redirect().then(function(data){
+        $localStorage.role = data.data;
+        if(data.data=='admin')
+          $state.go('app.dashboard');       
+        else if (data.data =='users');
+          $state.go('app.form.sale')
+      });
+        	
       }, function(res) {
         //console.log('invalid login');
       	toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);

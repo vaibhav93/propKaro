@@ -4,18 +4,23 @@ app.service('ngAuthorize',["$localStorage","$http","$location",function($localSt
 	this.printString = function(){
 		console.log(string);
 	}
-	this.getRole = function(deferred){
+	this.getRole = function(deferred,role){
 		var access_token = $localStorage.accessToken;
 
 		return $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/api/getRole?access_token='+access_token)
 		.then(function(res){
-			if(res.data==='admin'){
+			console.log('response is:' +res.data+' and role is: '+role);
+			if(res.data===role){
 				deferred.resolve();
-			}
+			}			
 			else{
 				console.log('Unauthorized');
 				deferred.reject();
 			}
 		});
+	}
+	this.redirect = function(){
+		var access_token = $localStorage.accessToken;
+		return $http.get($location.protocol()+'://'+$location.host()+':'+$location.port()+'/api/getRole?access_token='+access_token);
 	}
 }])

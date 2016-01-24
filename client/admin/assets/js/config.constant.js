@@ -53,6 +53,7 @@ app.constant('JS_REQUIRES', {
         'chatCtrl': 'assets/js/controllers/chatCtrl.js',
         'loginCtrl': 'assets/js/controllers/loginCtrl.js',
         'newUserCtrl': 'assets/js/controllers/newUserCtrl.js',
+        'saleCtrl': 'assets/js/controllers/saleCtrl.js',
         'userTableCtrl': 'assets/js/controllers/userTableCtrl.js',
         'bookingTableCtrl': 'assets/js/controllers/bookingTableCtrl.js',
         
