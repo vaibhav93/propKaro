@@ -255,7 +255,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'New Sale'
         },
-        resolve: loadSequence('toaster','spin','angularSpinner','saleCtrl'),
+        resolve: loadSequence('ui.select','toaster','spin','angularSpinner','saleCtrl'),
         data:{
             permissions:{
                 only:['users'],

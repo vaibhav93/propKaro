@@ -108,69 +108,101 @@
 					<legend>
 						Payment Details
 					</legend>
-					<div class="form-group" ng-class="{'has-error':Form.transactionid.$dirty && Form.transactionid.$invalid, 'has-success':Form.transactionid.$valid}">
-						<label class="control-label col-md-4">
-							Transaction ID  <span class="symbol required"></span>
-						</label>
-						<div class="col-md-8">
-							<input type="text" placeholder="Transaction ID" class="form-control" name="transactionid" ng-model="sale.transactionid" required />
-						</div>
-						<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.transactionid.$dirty && Form.transactionid.$invalid">Transaction ID is required</span>
-						<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.transactionid.$valid">Valid !</span>
-					</div>
-					<div class="form-group" ng-class="{'has-error':Form.transactionid.$dirty && Form.transactionid.$invalid, 'has-success':Form.transactionid.$valid}">
-						<label for="radio1" class="control-label col-md-4" style="margin-top:7px">
-							Payment mode  <span class="symbol required"></span>
-						</label>
-						<div class="col-md-8">
-							<div class="radio clip-radio radio-primary radio-inline">
-								<input type="radio" id="radio1" name="inline" value="radio1">
-								<label for="radio1">
-									Paypal
-								</label>
-							</div>
-							<div class="radio clip-radio radio-primary radio-inline">
-								<input type="radio" id="radio2" name="inline" value="radio2" checked="checked">
-								<label for="radio2">
-									Gateway
-								</label>
-							</div>
-						</div>
-						<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.transactionid.$dirty && Form.transactionid.$invalid">Transaction ID is required</span>
-						<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.transactionid.$valid">Valid !</span>
-					</div>
 					<div class="form-group" ng-class="{'has-error':Form.saledate.$dirty && Form.saledate.$invalid, 'has-success':Form.saledate.$valid}">
 						<label for="saledate" class="control-label col-md-4">Sale date  <span class="symbol required"></label>
 						
 						<div class="col-md-8">
-						<p class="input-group">
-									<input type="text" id="saledate" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="2-16-01-01" max-date="'2017-12-30'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-default" ng-click="open($event)">
-											<i class="glyphicon glyphicon-calendar"></i>
-										</button> </span>
+							<p class="input-group">
+								<input type="text" id="saledate" class="form-control" datepicker-popup="{{format}}" ng-model="sale.saledate" is-open="openedsale" min-date="2-16-01-01" max-date="'2017-12-30'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="opensale($event)">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button> </span>
 								</p>
-						</div>
+							</div>
 							<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.saledate.$dirty && Form.saledate.$invalid">Sale date is required</span>
 							<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.saledate.$valid">Valid !</span>
 
-					</div>
-				</fieldset>
-			</div>
-			<div class="row">
-				<span us-spinner spinner-key="spinner-1"></span> 
-				<div class="col-md-12">
-					<div class="pull-left">
-						<button type="submit" class="btn btn-primary">
-							Submit
-						</button>
-						<button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
-							Reset
-						</button>
+						</div>
+						<div class="form-group" ng-class="{'has-error':Form.verificationdate.$dirty && Form.verificationdate.$invalid, 'has-success':Form.verificationdate.$valid}">
+							<label for="verificationdate" class="control-label col-md-4">Verification date  <span class="symbol required"></label>
+
+							<div class="col-md-8">
+								<p class="input-group">
+									<input type="text" id="verificationdate" class="form-control" datepicker-popup="{{format}}" ng-model="sale.verificationdate" is-open="openedverify" min-date="2-16-01-01" max-date="'2017-12-30'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="openverify($event)">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button> </span>
+									</p>
+								</div>
+								<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.verificationdate.$dirty && Form.verificationdate.$invalid">Sale date is required</span>
+								<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.verificationdate.$valid">Valid !</span>
+
+							</div>
+							<div class="form-group" ng-class="{'has-error':Form.transactionid.$dirty && Form.transactionid.$invalid, 'has-success':Form.transactionid.$valid}">
+								<label class="control-label col-md-4">
+									Transaction ID  <span class="symbol required"></span>
+								</label>
+								<div class="col-md-8">
+									<input type="text" placeholder="Transaction ID" class="form-control" name="transactionid" ng-model="sale.transactionid" required />
+								</div>
+								<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.transactionid.$dirty && Form.transactionid.$invalid">Transaction ID is required</span>
+								<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.transactionid.$valid">Valid !</span>
+							</div>
+							<div class="form-group" ng-class="{'has-error':Form.transactionid.$dirty && Form.transactionid.$invalid, 'has-success':Form.transactionid.$valid}">
+								<label for="radio1" class="control-label col-md-4" style="margin-top:7px">
+									Payment mode  <span class="symbol required"></span>
+								</label>
+								<div class="col-md-8">
+									<div class="radio clip-radio radio-primary radio-inline">
+										<input type="radio" id="radio1" name="inline" value="radio1">
+										<label for="radio1">
+											Paypal
+										</label>
+									</div>
+									<div class="radio clip-radio radio-primary radio-inline">
+										<input type="radio" id="radio2" name="inline" value="radio2" checked="checked">
+										<label for="radio2">
+											Gateway
+										</label>
+									</div>
+								</div>
+								<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.transactionid.$dirty && Form.transactionid.$invalid">Payment mode is required</span>
+								<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.transactionid.$valid">Valid !</span>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-4">
+									Amount  <span class="symbol required"></span>
+								</label>
+								<div class="col-md-8">
+									<ui-select ng-model="sale.amount" theme="bootstrap">
+									<ui-select-match placeholder="Select in the list...">
+									{{$select.selected.amount}}
+								</ui-select-match>
+								<ui-select-choices repeat="cost in costs">
+								<div ng-bind-html="cost.amount"></div>
+								
+								</ui-select-choices>
+								</ui-select>
 					</div>
 				</div>
+			</fieldset>
+		</div>
+		<div class="row">
+			<span us-spinner spinner-key="spinner-1"></span> 
+			<div class="col-md-12" style="padding-left:30px">
+				<div class="pull-left">
+					<button type="submit" class="btn btn-primary">
+						Submit
+					</button>
+					<button type="reset" class="btn btn-primary btn-o" ng-click="form.reset(Form)">
+						Reset
+					</button>
+				</div>
 			</div>
+		</div>
 
-		</form>
-	</div>
-	<!-- end: TABLE WITH FILTERS -->
+	</form>
+</div>
+<!-- end: TABLE WITH FILTERS -->

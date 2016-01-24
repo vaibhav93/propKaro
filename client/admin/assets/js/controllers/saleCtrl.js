@@ -91,11 +91,21 @@
 
         }
     };
-    $scope.open = function ($event) {
+    $scope.costs = [
+    {amount:'$549.99'},
+    {amount:'$299.99'},
+    {amount:'$199.99'}];
+    $scope.opensale = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();
 
-        $scope.opened = !$scope.opened;
+        $scope.openedsale = !$scope.openedsale;
+    };
+    $scope.openverify = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.openedverify = !$scope.openedverify;
     };
         $scope.endOpen = function ($event) {
         $event.preventDefault();
