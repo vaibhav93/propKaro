@@ -55,7 +55,8 @@ app.constant('JS_REQUIRES', {
         'newUserCtrl': 'assets/js/controllers/newUserCtrl.js',
         'saleCtrl': 'assets/js/controllers/saleCtrl.js',
         'userTableCtrl': 'assets/js/controllers/userTableCtrl.js',
-        'bookingTableCtrl': 'assets/js/controllers/bookingTableCtrl.js',
+        'salesTableCtrl': 'assets/js/controllers/salesTableCtrl.js',
+
         
         //*** Filters
         'htmlToPlaintext': 'assets/js/filters/htmlToPlaintext.js'

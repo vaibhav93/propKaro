@@ -1,0 +1,41 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1 class="mainTitle">Manage Users</h1>
+			<span>Delete, modify vendors</span>
+		</div>
+		<div ncy-breadcrumb></div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+
+<!-- start: TABLE WITH FILTERS -->
+<div ng-controller="salesTableCtrl" class="container-fluid container-fullw">
+	<div class="row">
+		<div class="col-md-12">
+			<table ng-table="tableParams" show-filter="true" class="table">
+				<tbody ng-repeat="sale in $data">
+					<tr ng-class-odd="'odd'" ng-class-even="'even'">
+						<td width="20%" data-title="'Transaction ID'" filter="{ 'transactionid': 'text'}">{{sale.transactionid}}</td>
+						<td width="15%" data-title="'Sale Date'" filter="{ 'saledate': 'text'}">{{sale.saledate | date:'mediumDate'}}</td>
+						<td width="15%" data-title="'Verification Date'" filter="{ 'verificationdate': 'text'}">{{sale.verificationdate | date:'mediumDate'}}</td>
+						<td width="20%" data-title="'Payment mode'" filter="{ 'paymentmode': 'text'}">{{sale.paymentmode}}</td>
+
+						<td width="20%" data-title="'Customer name'" filter="{ 'firstname': 'text'}">{{sale.firstname+" "+ sale.lastname}}</td>
+						<td width="10%" data-title="'View Complete'">
+							<div class="pull-left margin-right-10">
+								<button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{booking.id}}" ng-click="openModal(booking.id)">view</button>
+							</div>
+						</td>
+
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</div>
+</div>
+<!-- end: TABLE WITH FILTERS -->

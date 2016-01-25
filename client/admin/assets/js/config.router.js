@@ -187,6 +187,19 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
                 only:['admin']
             }
         }
+    }).state('app.table.mysales', {
+        url: '/sales/:uQuserId',
+        templateUrl: "assets/views/table_sales.html",
+        title: 'Sales Table',
+        ncyBreadcrumb: {
+            label: 'Sales'
+        },
+        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'ngTable', 'salesTableCtrl'),
+        data:{
+            permissions:{
+                only:['users']
+            }
+        }
     }).state('app.table.booking', {
         url: '/bookings',
         templateUrl: "assets/views/table_booking.html",
