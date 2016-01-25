@@ -1,0 +1,62 @@
+{
+  "name": "sale",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "primaryno": {
+      "type": "string",
+      "required": true
+    },
+    "secondaryno": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zipcode": {
+      "type": "number"
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "saledate": {
+      "type": "Date",
+      "required": true
+    },
+    "verificationdate": {
+      "type": "Date",
+      "required": true
+    },
+    "transactionid": {
+      "type": "string",
+      "required": true
+    },
+    "paymentmode": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -150,26 +150,26 @@
 								<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.transactionid.$dirty && Form.transactionid.$invalid">Transaction ID is required</span>
 								<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.transactionid.$valid">Valid !</span>
 							</div>
-							<div class="form-group" ng-class="{'has-error':Form.transactionid.$dirty && Form.transactionid.$invalid, 'has-success':Form.transactionid.$valid}">
+							<div class="form-group" ng-class="{'has-error':Form.paymentmode.$dirty && Form.paymentmode.$invalid, 'has-success':Form.paymentmode.$valid}">
 								<label for="radio1" class="control-label col-md-4" style="margin-top:7px">
 									Payment mode  <span class="symbol required"></span>
 								</label>
 								<div class="col-md-8">
 									<div class="radio clip-radio radio-primary radio-inline">
-										<input type="radio" id="radio1" name="inline" value="radio1">
+										<input type="radio" id="radio1" name="inline" value="Paypal" ng-model="sale.paymentmode">
 										<label for="radio1">
 											Paypal
 										</label>
 									</div>
 									<div class="radio clip-radio radio-primary radio-inline">
-										<input type="radio" id="radio2" name="inline" value="radio2" checked="checked">
+										<input type="radio" id="radio2" name="inline" value="Gateway" ng-model="sale.paymentmode" checked="checked">
 										<label for="radio2">
 											Gateway
 										</label>
 									</div>
 								</div>
-								<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.transactionid.$dirty && Form.transactionid.$invalid">Payment mode is required</span>
-								<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.transactionid.$valid">Valid !</span>
+								<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.paymentmode.$dirty && Form.paymentmode.$invalid">Payment mode is required</span>
+								<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.paymentmode.$valid">Valid !</span>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-4">

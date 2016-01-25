@@ -35,5 +35,9 @@
   "UQUser": {
     "dataSource": "mongoDs",
     "public": true
+  },
+  "sale": {
+    "dataSource": "mongoDs",
+    "public": true
   }
 }

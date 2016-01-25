@@ -7,11 +7,20 @@
  app.controller('saleCtrl', ["$scope", "$filter","$timeout", "UQUser", "usSpinnerService","toaster",
     function ($scope,$filter,$timeout,UQUser,usSpinnerService,toaster) {
 
-        $scope.form = {
+        $scope.sale = {
             firstname:'',
             lastname:'',
             primaryno:'',
-            secondaryno:''
+            secondaryno:'',
+            address:'',
+            state:'',
+            zipcode:0,
+            email:'',
+            saledate:null,
+            verificationdate:null,
+            transactionid:'',
+            paymentmode:'',
+            amount:''
         };
         
         $scope.generatePassword=function(length) {
@@ -37,7 +46,8 @@
         $scope.form = {
 
             submit: function (form) {
-
+                $scope.sale.amount = $scope.sale.amount.amount;
+                console.log($scope.sale);
                 usSpinnerService.spin('spinner-1');
                 var firstError = null;
                 if (form.$invalid) {
