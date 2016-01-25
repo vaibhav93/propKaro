@@ -4,8 +4,8 @@
 
  * Simple table with sorting and filtering on AngularJS
  */
- app.controller('saleCtrl', ["$scope", "$filter","$timeout", "UQUser", "usSpinnerService","toaster",
-    function ($scope,$filter,$timeout,UQUser,usSpinnerService,toaster) {
+ app.controller('saleCtrl', ["$scope", "$filter","$timeout", "UQUser", "usSpinnerService","toaster","Sale","$localStorage",
+    function ($scope,$filter,$timeout,UQUser,usSpinnerService,toaster,Sale,$localStorage) {
 
         $scope.sale = {
             firstname:'',
@@ -35,20 +35,20 @@
         $scope.toasterSuccess = {
             type: 'success',
             title: 'Success',
-            text: 'New User Created'
+            text: 'Sale registered'
         };
         $scope.toasterError = {
             type: 'error',
             title: 'Error',
-            text: 'Username already exists'
+            text: 'Error occured'
         };
         $scope.master = $scope.newUser;
         $scope.form = {
 
             submit: function (form) {
-                $scope.sale.amount = $scope.sale.amount.amount;
-                console.log($scope.sale);
-                usSpinnerService.spin('spinner-1');
+               
+                //console.log($scope.sale);
+                
                 var firstError = null;
                 if (form.$invalid) {
 
@@ -71,9 +71,10 @@
                     return;
 
                 } else {
-                    $scope.newUser.email = $scope.newUser.username + '@uniquick.com';
-                    $scope.newUser.role = 'users';
-                    UQUser.create($scope.newUser,function(success){
+                    usSpinnerService.spin('spinner-1');
+                    $scope.sale.amount = $scope.sale.amount.amount;
+                    // $scope.sale.uQuserId = $localStorage.user.id;
+                    UQUser.sales.create({id:$localStorage.user.id},$scope.sale,function(success){
                         usSpinnerService.stop('spinner-1');
                         $scope.form.reset(form);
                         // console.log(success);
@@ -85,17 +86,28 @@
                         console.log(err);
                         toaster.pop($scope.toasterError.type, $scope.toasterError.title, $scope.toasterError.text);
                     });
+                    
                 //your code for submit
             }
 
         },
         reset: function (form) {
 
+
             $scope.sale = {
                 firstname:'',
                 lastname:'',
                 primaryno:'',
-                secondaryno:''
+                secondaryno:'',
+                address:'',
+                state:'',
+                zipcode:0,
+                email:'',
+                saledate:null,
+                verificationdate:null,
+                transactionid:'',
+                paymentmode:'',
+                amount:''
             };
             form.$setPristine(true);
 
@@ -117,7 +129,7 @@
 
         $scope.openedverify = !$scope.openedverify;
     };
-        $scope.endOpen = function ($event) {
+    $scope.endOpen = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();
         $scope.startOpened = false;
