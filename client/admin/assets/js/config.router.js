@@ -257,7 +257,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         resolve: loadSequence('toaster','spin','angularSpinner','newUserCtrl'),
         data:{
             permissions:{
-                only:['a'],
+                only:['admin'],
                 redirectTo: 'login.signin'
             }
         }
