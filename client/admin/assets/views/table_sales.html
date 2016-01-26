@@ -9,33 +9,41 @@
 	</div>
 </section>
 <!-- end: PAGE TITLE -->
-
+		
 <!-- start: TABLE WITH FILTERS -->
 <div ng-controller="salesTableCtrl" class="container-fluid container-fullw">
 	<div class="row">
+		<div class="col-md-6">
+								<h5>Date Range</h5>
+		<div class="input-group">
+									<input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="start"  is-open="startOpened" ng-init="startOpened = false" min-date="'1970-01-01'" max-date="'2017-12-30'" ng-required="true" close-text="Close" ng-click="startOpen($event)" ng-change="startChange(start)"/>
+									<span class="input-group-addon">to</span>
+									<input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="end" is-open="endOpened" ng-init="endOpened = false" min-date="start" max-date="'2017-12-30'" ng-required="true" close-text="Close" ng-click="endOpen($event)" ng-change="endChange(end)"/>
+								</div>
+</div>
 		<div class="col-md-12">
 			<table ng-table="tableParams" show-filter="true" class="table">
 				<tbody ng-repeat="sale in $data">
 					<tr ng-class-odd="'odd'" ng-class-even="'even'">
-						<td width="20%" data-title="'Transaction ID'" filter="{ 'transactionid': 'text'}">{{sale.transactionid}}</td>
-						<td width="15%" data-title="'Sale Date'" filter="{ 'saledate': 'text'}">{{sale.saledate | date:'mediumDate'}}</td>
-						<td width="15%" data-title="'Verification Date'" filter="{ 'verificationdate': 'text'}">{{sale.verificationdate | date:'mediumDate'}}</td>
-						<td width="20%" data-title="'Payment mode'" filter="{ 'paymentmode': 'text'}">{{sale.paymentmode}}</td>
+						<td width="33%" data-title="'Transaction ID'" filter="{ 'transactionid': 'text'}">{{sale.transactionid}}</td>
+						<td width="33%" data-title="'Sale Date'">{{sale.saledate | date:'mediumDate'}}</td>
+						
+						<td width="33%" data-title="'Amount'" filter="{ 'amount': 'text'}">{{sale.amount}}</td>
 
-						<td width="20%" data-title="'Customer name'" filter="{ 'firstname': 'text'}">{{sale.firstname+" "+ sale.lastname}}</td>
-						<td width="10%" data-title="'View Complete'">
+						
+						<!-- <td width="10%" data-title="'View Complete'">
 							<div class="pull-left margin-right-10">
 								<button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{booking.id}}" ng-click="openModal(booking.id)">view</button>
 							</div>
-						</td>
+						</td> -->
 
 
-			</tr>
-		</tbody>
-	</table>
+					</tr>
+				</tbody>
+			</table>
 
-</div>
+		</div>
 
-</div>
+	</div>
 </div>
 <!-- end: TABLE WITH FILTERS -->
