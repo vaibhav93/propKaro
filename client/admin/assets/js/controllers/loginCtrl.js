@@ -28,7 +28,7 @@ app.controller('LoginCtrl', ["UQUser","$scope","$state","$rootScope","$localStor
         $localStorage.role = data.data;
         if(data.data=='admin')
           $state.go('app.dashboard');       
-        else if (data.data =='users');
+        else
           $state.go('app.form.sale')
       });
         	
