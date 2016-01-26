@@ -8,7 +8,17 @@
     function ($scope,$localStorage,$filter,$timeout, $upload, ngTableParams, Sale,UQUser,$q,$modal,$stateParams) {
         var promises = [];
         
-
+        $scope.openModal = function(saleId) {
+            var modalInstance = $modal.open({
+                templateUrl: 'saleModal.html',
+                controller: 'salesModalCtrl',
+                resolve: {
+                    sale: function() {
+                        return Sale.findById({id:saleId}).$promise;
+                    }
+                }
+            });
+        };
         $scope.deleteUser = function(userId){
             UQUser.deleteById({id:userId},
                 function(success){console.log('delete success');$scope.tableParams.reload();},
@@ -26,38 +36,38 @@
         getData: function ($defer, params) {
             // use build-in angular filter
             if($stateParams.uQuserId && $localStorage.role =='users'){
-            if(!$scope.start || !$scope.end){
-            UQUser.sales({id:$stateParams.uQuserId}).$promise.then(function(data){
+                if(!$scope.start || !$scope.end){
+                    UQUser.sales({id:$stateParams.uQuserId}).$promise.then(function(data){
 
-                applyData(data);                
-            })
-        } else {
-            UQUser.sales({id:$stateParams.uQuserId,filter:{where:{saledate:{between:[$scope.start,$scope.end]}}}}).$promise.then(function(data){
+                        applyData(data);                
+                    })
+                } else {
+                    UQUser.sales({id:$stateParams.uQuserId,filter:{where:{saledate:{between:[$scope.start,$scope.end]}}}}).$promise.then(function(data){
 
-                applyData(data);                
-            })
-        }
-    } else {
-        if(!$scope.start || !$scope.end){
-            Sale.find().$promise.then(function(data){
+                        applyData(data);                
+                    })
+                }
+            } else {
+                if(!$scope.start || !$scope.end){
+                    Sale.find().$promise.then(function(data){
 
-                applyData(data);                
-            })
-        } else {
-            Sale.find({filter:{where:{saledate:{between:[$scope.start,$scope.end]}}}}).$promise.then(function(data){
+                        applyData(data);                
+                    })
+                } else {
+                    Sale.find({filter:{where:{saledate:{between:[$scope.start,$scope.end]}}}}).$promise.then(function(data){
 
-                applyData(data);                
-            })
-        }
+                        applyData(data);                
+                    })
+                }
 
-    }
+            }
 
             var applyData = function(data){
                 params.total(data.length);
-                    var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
-                    orderedData = params.sorting() ? $filter('orderBy')(orderedData, params.orderBy()) : orderedData;
-                    $scope.vendors = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-                    params.total(orderedData.length);
+                var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
+                orderedData = params.sorting() ? $filter('orderBy')(orderedData, params.orderBy()) : orderedData;
+                $scope.vendors = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                params.total(orderedData.length);
                 // set total for recalc pagination
                 $defer.resolve($scope.vendors); 
 
@@ -66,15 +76,15 @@
         }
 
 
-});
+    });
 $scope.today = function () {
-        $scope.dt = new Date();
-    };
-    $scope.today();
+    $scope.dt = new Date();
+};
+$scope.today();
 
-    $scope.clear = function () {
-        $scope.dt = null;
-    };
+$scope.clear = function () {
+    $scope.dt = null;
+};
 
     // Disable weekend selection
     $scope.disabled = function (date, mode) {
@@ -156,3 +166,17 @@ $scope.today = function () {
 
 }]);
 
+app.controller('salesModalCtrl', ["$scope", "$modalInstance", "sale","Sale", function ($scope, $modalInstance, sale,Sale) {
+    $scope.sale = sale;
+    $scope.user = Sale.uQUser({id:sale.id},function(data){
+        // console.log(data);
+    });
+
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}]);
