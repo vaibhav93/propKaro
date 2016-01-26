@@ -4,8 +4,8 @@
 
  * Simple table with sorting and filtering on AngularJS
  */
- app.controller('salesTableCtrl', ["$scope", "$filter","$timeout", "Upload", "ngTableParams", "UQUser","$q","$modal","$stateParams",
-    function ($scope,$filter,$timeout, $upload, ngTableParams, UQUser,$q,$modal,$stateParams) {
+ app.controller('salesTableCtrl', ["$scope","$localStorage", "$filter","$timeout", "Upload", "ngTableParams","Sale", "UQUser","$q","$modal","$stateParams",
+    function ($scope,$localStorage,$filter,$timeout, $upload, ngTableParams, Sale,UQUser,$q,$modal,$stateParams) {
         var promises = [];
         
 
@@ -25,6 +25,7 @@
         total: 0, // length of data
         getData: function ($defer, params) {
             // use build-in angular filter
+            if($stateParams.uQuserId && $localStorage.role =='users'){
             if(!$scope.start || !$scope.end){
             UQUser.sales({id:$stateParams.uQuserId}).$promise.then(function(data){
 
@@ -36,6 +37,20 @@
                 applyData(data);                
             })
         }
+    } else {
+        if(!$scope.start || !$scope.end){
+            Sale.find().$promise.then(function(data){
+
+                applyData(data);                
+            })
+        } else {
+            Sale.find({filter:{where:{saledate:{between:[$scope.start,$scope.end]}}}}).$promise.then(function(data){
+
+                applyData(data);                
+            })
+        }
+
+    }
 
             var applyData = function(data){
                 params.total(data.length);
