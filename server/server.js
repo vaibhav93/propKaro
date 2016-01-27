@@ -59,7 +59,7 @@ app.post('/img', upload.single('file'), function(req, res,next) {
       dest = dest + '/business/' + req.body.businessId.slice(0,6);
     var new_path = dest+'/'+req.file.originalname;
     if (!fs.existsSync(dest)){
-        fs.mkdirSync(dest);
+      fs.mkdirSync(dest);
     }
     console.log(new_path);
     var arr = new_path.split("/");
@@ -68,10 +68,10 @@ app.post('/img', upload.single('file'), function(req, res,next) {
     arr = fullUrl+arr;
     //console.log(arr);
     if(req.body.businessId){
-    app.models.Business.findById(req.body.businessId,function(err,business){
-      if(err || !business){
-        console.log('Error: '+err);
-      } else {
+      app.models.Business.findById(req.body.businessId,function(err,business){
+        if(err || !business){
+          console.log('Error: '+err);
+        } else {
         // console.log(arr);
         var newArray = business.bookingimages;
         newArray.push(arr);
@@ -81,7 +81,7 @@ app.post('/img', upload.single('file'), function(req, res,next) {
         })
       }
     })
-  }
+    }
     fs.rename(temp_path,new_path,function(err){
       if(err){
         //console.log(err);
@@ -90,31 +90,95 @@ app.post('/img', upload.single('file'), function(req, res,next) {
     res.json({img:arr});
   });
 //export xls
-app.get('/api/excel',function(req,res){
-    var nodeExcel=require('excel-export');
-    var conf={};
-    conf.cols=[{
-            caption:'Transaction ID',
-            type:'string',
-            width:50
-        },
-        {
-            caption:'Payment mode',
-            type:'string',
-            width:50
-        }
-        ];
-    app.models.sale.find(function(err,sales){
+app.get('/api/:name',function(req,res){
+  var moment = require("moment");
+  var json2csv = require('json2csv');
+  // var fields = ['transactionid', 'saledate'];
+  var fields= [
+    // Supports label -> simple path
+    {
+      label: 'Transaction ID', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'transactionid', // data.path.to.something
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },
+
+    // Supports label -> derived value
+    {
+      label: 'Sale Date', // Supports duplicate labels (required, else your column will be labeled [function])
+      value: function(row) {
+        return moment(row.saledate).format('DD-MM-YYYY');
+      },
+      default: 'NULL' // default if value fn returns falsy
+    },{
+      label: 'Verification Date', // Supports duplicate labels (required, else your column will be labeled [function])
+      value: function(row) {
+        return moment(row.verificationdate).format('DD-MM-YYYY');
+      },
+      default: 'NULL' // default if value fn returns falsy
+    },
+    {
+      label: 'Username', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'username',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Payment mode', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'paymentmode', // data.path.to.something
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Amount', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'amount', // data.path.to.something
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Customer name', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: function(row) {
+        return row.firstname+ ' '+row.lastname;
+      },
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Contact', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'primaryno',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Alt. Contact', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'secondaryno',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Address', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'address',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'State', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'state',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Zipcode', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'zipcode',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    },{
+      label: 'Email', // (optional, column will be labeled 'path.to.something' if not defined)
+      value: 'email',
+      default: 'NULL' // default if value is not found (optional, overrides `defaultValue` for column)
+    }
+
+  ];
+  app.models.sale.find(function(err,sales){
     if(err){
       res.end(err,'error');
     }
-    conf.rows=sales;
-    var result=nodeExcel.execute(conf);
-    res.setHeader('Content-Type','application/vnd.openxmlformates');
-    res.setHeader("Content-Disposition","attachment;filename="+"todo.xlsx");
-    res.end(result,'binary');
-            
+    json2csv({ data: sales, fields: fields }, function(err, csv) {
+      if (err) console.log(err);
+      fs.writeFile('Downloads/file.csv', csv, function(err) {
+        if (err) throw err;
+        
+        res.sendFile(path.resolve(__dirname, '../Downloads/file.csv'));
+        // res.end('hello,world\nkeesun,hi', 'UTF-8'); 
+      });
     });
+    // res.setHeader('Content-Type','application/vnd.openxmlformates');
+    // res.setHeader("Content-Disposition","attachment;filename="+"todo.xlsx");
+    // res.json({arr:'hi'});
+
+  });
 });
 //Get role api
 app.use('/api/getRole',function(req,res,next){

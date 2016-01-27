@@ -46,7 +46,7 @@
         $scope.form = {
 
             submit: function (form) {
-               
+
                 //console.log($scope.sale);
                 
                 var firstError = null;
@@ -74,20 +74,26 @@
                     usSpinnerService.spin('spinner-1');
                     $scope.sale.amount = $scope.sale.amount.amount;
                     // $scope.sale.uQuserId = $localStorage.user.id;
-                    UQUser.sales.create({id:$localStorage.user.id},$scope.sale,function(success){
-                        usSpinnerService.stop('spinner-1');
-                        $scope.form.reset(form);
+                    UQUser.findById({id:$localStorage.user.id},function(user){
+                        $scope.sale.username = user.username;
+                        UQUser.sales.create({id:$localStorage.user.id},$scope.sale,function(success){
+                            usSpinnerService.stop('spinner-1');
+                            $scope.form.reset(form);
                         // console.log(success);
                         toaster.pop($scope.toasterSuccess.type, $scope.toasterSuccess.title, $scope.toasterSuccess.text);
                     },function(err){
                         usSpinnerService.stop('spinner-1');
-                        // console.log('errrrrroorrr');
+                        
                         $scope.form.reset(form);
                         console.log('form submit error');
                         console.log(err);
                         toaster.pop($scope.toasterError.type, $scope.toasterError.title, $scope.toasterError.text);
                     });
-                    
+
+                    },
+                    function(err){});
+
+
                 //your code for submit
             }
 
