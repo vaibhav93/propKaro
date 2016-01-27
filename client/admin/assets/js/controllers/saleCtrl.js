@@ -40,7 +40,7 @@
         $scope.toasterError = {
             type: 'error',
             title: 'Error',
-            text: 'Error occured'
+            text: 'Transaction ID should be unique'
         };
         $scope.master = $scope.newUser;
         $scope.form = {
@@ -83,6 +83,7 @@
                         usSpinnerService.stop('spinner-1');
                         // console.log('errrrrroorrr');
                         $scope.form.reset(form);
+                        console.log('form submit error');
                         console.log(err);
                         toaster.pop($scope.toasterError.type, $scope.toasterError.title, $scope.toasterError.text);
                     });
@@ -114,9 +115,20 @@
         }
     };
     $scope.costs = [
+    {amount:'$599.99'},
     {amount:'$549.99'},
+    {amount:'$499.99'},
+    {amount:'$449.99'},
+    {amount:'$399.99'},
+    {amount:'$349.99'},
     {amount:'$299.99'},
-    {amount:'$199.99'}];
+    {amount:'$249.99'},
+    {amount:'$199.99'},
+    {amount:'$249.99'},
+    {amount:'$99.99'},
+    {amount:'$49.99'},
+    ];
+
     $scope.opensale = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();

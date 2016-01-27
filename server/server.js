@@ -89,7 +89,33 @@ app.post('/img', upload.single('file'), function(req, res,next) {
     res.setHeader('Content-Type', 'application/json');
     res.json({img:arr});
   });
-
+//export xls
+app.get('/api/excel',function(req,res){
+    var nodeExcel=require('excel-export');
+    var conf={};
+    conf.cols=[{
+            caption:'Transaction ID',
+            type:'string',
+            width:50
+        },
+        {
+            caption:'Payment mode',
+            type:'string',
+            width:50
+        }
+        ];
+    app.models.sale.find(function(err,sales){
+    if(err){
+      res.end(err,'error');
+    }
+    conf.rows=sales;
+    var result=nodeExcel.execute(conf);
+    res.setHeader('Content-Type','application/vnd.openxmlformates');
+    res.setHeader("Content-Disposition","attachment;filename="+"todo.xlsx");
+    res.end(result,'binary');
+            
+    });
+});
 //Get role api
 app.use('/api/getRole',function(req,res,next){
 
