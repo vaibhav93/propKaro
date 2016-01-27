@@ -4,8 +4,8 @@
 
  * Simple table with sorting and filtering on AngularJS
  */
- app.controller('salesTableCtrl', ["$scope","$localStorage", "$filter","$timeout", "Upload", "ngTableParams","Sale", "UQUser","$q","$modal","$stateParams",
-    function ($scope,$localStorage,$filter,$timeout, $upload, ngTableParams, Sale,UQUser,$q,$modal,$stateParams) {
+ app.controller('salesTableCtrl', ["$scope","$localStorage","$http","$location", "$filter","$timeout", "Upload", "ngTableParams","Sale", "UQUser","$q","$modal","$stateParams",
+    function ($scope,$localStorage,$http,$location,$filter,$timeout, $upload, ngTableParams, Sale,UQUser,$q,$modal,$stateParams) {
         var promises = [];
         
         $scope.openModal = function(saleId) {
@@ -85,6 +85,7 @@ $scope.today();
 $scope.clear = function () {
     $scope.dt = null;
 };
+$scope.csv = $location.protocol()+'://'+$location.host()+':'+$location.port()+'/api/file/export.csv';
 
     // Disable weekend selection
     $scope.disabled = function (date, mode) {

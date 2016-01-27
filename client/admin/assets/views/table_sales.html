@@ -21,6 +21,9 @@
 									<input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="end" is-open="endOpened" ng-init="endOpened = false" min-date="start" max-date="'2017-12-30'" ng-required="true" close-text="Close" ng-click="endOpen($event)" ng-change="endChange(end)"/>
 								</div>
 </div>
+<div class="col-md-6">
+	<a class="btn btn-primary btn-o btn-sm pull-right" id="download" ng-href="{{csv}}">Download xls<i class="fa fa-file-text" style="padding-left:5px"></i></a>
+</div>
 		<div class="col-md-12">
 			<table ng-table="tableParams" show-filter="true" class="table">
 				<tbody ng-repeat="sale in $data">

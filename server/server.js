@@ -90,7 +90,7 @@ app.post('/img', upload.single('file'), function(req, res,next) {
     res.json({img:arr});
   });
 //export xls
-app.get('/api/:name',function(req,res){
+app.get('/api/file/:name',function(req,res){
   var moment = require("moment");
   var json2csv = require('json2csv');
   // var fields = ['transactionid', 'saledate'];
