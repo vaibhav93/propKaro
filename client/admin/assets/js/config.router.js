@@ -200,6 +200,19 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
                 only:['users']
             }
         }
+    }).state('app.table.findsales', {
+        url: '/findsales',
+        templateUrl: "assets/views/find_sales.html",
+        title: 'Find Sales',
+        ncyBreadcrumb: {
+            label: 'Find Sales'
+        },
+        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'ngTable', 'findSalesCtrl'),
+        data:{
+            permissions:{
+                only:['users']
+            }
+        }
     }).state('app.table.allsales', {
         url: '/allsale',
         templateUrl: "assets/views/table_sales.html",

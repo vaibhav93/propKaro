@@ -4,7 +4,13 @@
  */
 app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate','$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar', 'User',
 function ($rootScope, $scope, $state, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar, User) {
-
+    $scope.availableSearchParams = [
+          { key: "name", name: "Name", placeholder: "Name..." },
+          { key: "city", name: "City", placeholder: "City..." },
+          { key: "country", name: "Country", placeholder: "Country..." },
+          { key: "emailAddress", name: "E-Mail", placeholder: "E-Mail..." },
+          { key: "job", name: "Job", placeholder: "Job..." }
+        ];
     // Loading bar transition
     // -----------------------------------
     var $win = $($window);

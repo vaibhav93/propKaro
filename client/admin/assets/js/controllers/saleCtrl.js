@@ -10,8 +10,8 @@
         $scope.sale = {
             firstname:'',
             lastname:'',
-            primaryno:'',
-            secondaryno:'',
+            primaryno:null,
+            secondaryno:0,
             address:'',
             state:'',
             zipcode:0,
@@ -104,8 +104,8 @@
             $scope.sale = {
                 firstname:'',
                 lastname:'',
-                primaryno:'',
-                secondaryno:'',
+                primaryno:null,
+                secondaryno:0,
                 address:'',
                 state:'',
                 zipcode:0,

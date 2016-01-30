@@ -56,6 +56,7 @@ app.constant('JS_REQUIRES', {
         'saleCtrl': 'assets/js/controllers/saleCtrl.js',
         'userTableCtrl': 'assets/js/controllers/userTableCtrl.js',
         'salesTableCtrl': 'assets/js/controllers/salesTableCtrl.js',
+        'findSalesCtrl': 'assets/js/controllers/findSalesCtrl.js',
 
         
         //*** Filters
@@ -66,7 +67,7 @@ app.constant('JS_REQUIRES', {
     {
         name: 'angularSpinner',
         files: ['../bower_components/angular-spinner/angular-spinner.js']
-    },
+    },    
     {
         name: 'angularMoment',
         files: ['../bower_components/angular-moment/angular-moment.min.js']

@@ -23,5 +23,6 @@ angular.module("clip-two", [
 	'isteven-multi-select',
 	'permission',
 	'uiGmapgoogle-maps',
+	'angular-advanced-searchbox',
 	'mwl.confirm'
 ]);

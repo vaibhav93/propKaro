@@ -45,7 +45,7 @@
 							Contact number <span class="symbol required"></span>
 						</label>
 						<div class="col-md-8">
-							<input type="text" placeholder="Contact" class="form-control" name="primaryno" ng-model="sale.primaryno" required />
+							<input type="number" placeholder="Contact" class="form-control" name="primaryno" ng-model="sale.primaryno" required />
 						</div>
 						<span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.primaryno.$dirty && Form.primaryno.$invalid">Contact number is required</span>
 						<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.primaryno.$valid">Valid !</span>
@@ -55,7 +55,7 @@
 							Alternate contact <span class="symbol"></span>
 						</label>
 						<div class="col-md-8">
-							<input type="text" placeholder="Alternate contact" class="form-control" name="secondaryno" ng-model="sale.secondaryno"/>
+							<input type="number" placeholder="Alternate contact" class="form-control" name="secondaryno" ng-model="sale.secondaryno"/>
 						</div>
 						<!-- <span class="error text-small block col-md-8 col-md-offset-4" ng-if="Form.secondaryno.$dirty && Form.secondaryno.$invalid">Last name is required</span> -->
 						<span class="success text-small col-md-8 col-md-offset-4" ng-if="Form.secondaryno.$valid && Form.secondaryno.$dirty">Valid !</span>
