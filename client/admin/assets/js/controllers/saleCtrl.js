@@ -121,18 +121,18 @@
         }
     };
     $scope.costs = [
-    {amount:'$599.99'},
-    {amount:'$549.99'},
-    {amount:'$499.99'},
-    {amount:'$449.99'},
-    {amount:'$399.99'},
-    {amount:'$349.99'},
-    {amount:'$299.99'},
+    {amount:'$49.99'},
+    {amount:'$99.99'},
     {amount:'$249.99'},
     {amount:'$199.99'},
     {amount:'$249.99'},
-    {amount:'$99.99'},
-    {amount:'$49.99'},
+    {amount:'$299.99'},
+    {amount:'$349.99'},
+    {amount:'$399.99'},
+    {amount:'$449.99'},
+    {amount:'$499.99'},
+    {amount:'$549.99'},
+    {amount:'$599.99'},
     ];
 
     $scope.opensale = function ($event) {
