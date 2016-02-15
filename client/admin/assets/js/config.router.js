@@ -197,7 +197,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         resolve: loadSequence('monospaced.elastic', 'ui.mask', 'ngTable', 'salesTableCtrl'),
         data:{
             permissions:{
-                only:['users']
+                only:['users','admin']
             }
         }
     }).state('app.table.findsales', {
