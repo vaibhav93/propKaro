@@ -15,8 +15,8 @@ var options = {
 // var dump = require('dumpstr').dump;
 module.exports = function(app) {
     var rule = new schedule.RecurrenceRule();
-    rule.hour = 22;
-    rule.minute = 39;
+    rule.hour = 23;
+    rule.minute = 30;
     var j = schedule.scheduleJob(rule, function() {
         //dump db
         var current = moment().format('DD-MM-YYYY');
