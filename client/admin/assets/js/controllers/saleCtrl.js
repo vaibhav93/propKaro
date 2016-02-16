@@ -169,7 +169,7 @@
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 
-
+    $scope.minDate = new Date();
     $scope.ismeridian = true;
     $scope.toggleMode = function () {
         $scope.ismeridian = !$scope.ismeridian;

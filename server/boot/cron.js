@@ -6,12 +6,17 @@ var fs = require('fs'),
     path = require('path'),
 
     app = require('../../server/server');
-
+var http = require('http');
+var options = {
+    host: 'localhost',
+    port: 3000,
+    path: '/api/file/export.csv'
+};
 // var dump = require('dumpstr').dump;
 module.exports = function(app) {
     var rule = new schedule.RecurrenceRule();
-    rule.hour = 14;
-    rule.minute = 30;
+    rule.hour = 22;
+    rule.minute = 39;
     var j = schedule.scheduleJob(rule, function() {
         //dump db
         var current = moment().format('DD-MM-YYYY');
@@ -20,10 +25,10 @@ module.exports = function(app) {
 
             //dump db to S3
             var params = {
-                localFile: 'server/dbBackup/' + 'uniquick-' + current + '.tar',
+                localFile: 'Downloads/file.csv',
                 s3Params: {
                     Bucket: "uniquickdb",
-                    Key: 'uniquick-' + current + '.tar'
+                    Key: 'uniquick-' + current + '.csv'
                 }
             };
             var uploader = app.client.uploadFile(params);
@@ -31,14 +36,11 @@ module.exports = function(app) {
                 //console.log("db uploaded to s3");
             });
         }
-
-        backup({
-            uri: 'mongodb://localhost:27017/propKaro', // mongodb://<dbuser>:<dbpassword>@<dbdomain>.mongolab.com:<dbport>/<dbdatabase>
-            root: 'server/dbBackup', // write files into this dir
-            tar: 'uniquick-' + current + '.tar', // save backup inot this tar file
-            metadata: true,
-            callback: backupComplete
-        });
+        http.get(options,function(res){
+            res.on('data',function(chunk){
+                backupComplete();
+            })
+        })
 
     });
 }

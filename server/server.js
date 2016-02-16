@@ -23,6 +23,9 @@ http.get(options, function(res) {
             s3Options: JSON.parse(chunk)
         });
     });
+    res.on('error',function(err){
+
+    });
 })
 
 
